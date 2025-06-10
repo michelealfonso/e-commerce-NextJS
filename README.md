@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Area	Tool / Servizio
 
-## Getting Started
+Frontend + Backend	Next.js (App Router)
 
-First, run the development server:
+Creazione del form register/login, con campi dinamici per migliorare la UX,
+creazione di un grande schema zod per verificare la validità dei dati inseriti 
+creazione dei backend API per la registrazione di nuovi utenti tramite POST con NextResponse
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Creazione della sezione prodotti all'interno di user come schermata princiapale. Creazione della logica di aggiungi al carrello con inserimento di prodotto al componente cart
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Da capire come centralizzare le aggiunte? useReducer oppure altri gestori di stato.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Deploy frontend	Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Database Supabase (PostgreSQL)
 
-## Learn More
+la creazione degli utenti tramite Prisma e il salvataggio su Supabase avviene tramite la stringa DATABASE_URL con configurazione PostegreSQL
 
-To learn more about Next.js, take a look at the following resources:
+ORM	Prisma
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+per la parte di prisma ho creato le due tabelle user e product per la creazione in DB di un nuovo utente
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Autenticazione NextAuth
 
-## Deploy on Vercel
+Permette agli utenti di loggarsi con email/password ne valida le credenziali contro il database Prisma usa JWT per mantenere l’utente loggato personalizza la sessione con i dati dell’utente reindirizza al login personalizzato se necessario.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Pagamenti Stripe
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Storage immagini Supabase Storage
+
+
+
+sto realizzando un e-commerce 
+
+lo stack tecnologico è:
+
+nextJS, prisma, nextAuth, supabase e postegreSQL e stripe per pagamenti
+ho già creato il login/register con autenticazione e sto creando la sezione prodotti, dove ho tutti i proodtti con pulsante di aggiungi al carrello per aggiungere il prodotto al componente cart
+
+questa è la struttura
+
+/app
+  /api
+    /auth             → NextAuth
+    /products         → CRUD prodotti
+    /checkout         → Stripe API
+  /cart               → carrello utente
+  /admin              → dashboard admin
+  /product/[slug]     → dettaglio prodotto
+  index.tsx           → homepage con elenco prodotti
+
+/components
+  ProductCard.tsx
+  CartSidebar.tsx
+  Navbar.tsx
+  ProductForm.tsx
+
+/prisma
+  schema.prisma       → definizione database
+
+/lib
+  auth.ts             → helpers per NextAuth
+  stripe.ts           → client Stripe
+
+/styles
+  tailwind.config.js
