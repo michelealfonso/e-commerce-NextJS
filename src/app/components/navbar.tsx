@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../lib/auth";
 import Link from "next/link";
 import Image from "next/image";
+import Cart from "./cart";
 
 
 export default async function Navbar() {
@@ -36,16 +37,9 @@ export default async function Navbar() {
                         href="/sign-in">
                         Logout
                     </Link>
-                    <Link
-                        href="/cart"
-                        className="w-auto flex gap-2 py-1.5 px-4 border  bg-gray-100 hover:bg-gray-200 border-gray-300 rounded-md text-sm font-medium text-gray-800 shadow-sm">
-                        <Image src="/icons/cart.svg" alt="" width={20} height={20} />
-                        <h1> Cart </h1>
-                    </Link>
+                    <Cart />  
                 </>
             )}
         </div >
     )
 }
-
-`per ora lascio cosi, ma bisogna cambiare perché è ripetitivo e può essere più ottimizzato`

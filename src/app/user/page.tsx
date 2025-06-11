@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Navbar from "../components/navbar";
-import Product from "../product/page";
+import Products from "../components/products";
 
 export default async function User() {
     const session = await getServerSession(authOptions);
@@ -20,10 +20,7 @@ export default async function User() {
             ) : (
                 <>
                     <Navbar />
-                    <p>Qui puoi vedere i prodotti disponibili...</p>
-                    <Product />
-                    {/* qui inserisco product */}
-                    {/* <Link href="/sign-in"> Logout </Link> */}
+                    <Products/>
                 </>
             )}
         </div>

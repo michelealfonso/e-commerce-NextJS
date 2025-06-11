@@ -8,7 +8,13 @@ creazione dei backend API per la registrazione di nuovi utenti tramite POST con 
 
 Creazione della sezione prodotti all'interno di user come schermata princiapale. Creazione della logica di aggiungi al carrello con inserimento di prodotto al componente cart
 
-Da capire come centralizzare le aggiunte? useReducer oppure altri gestori di stato.
+
+per la gestione acquisti quando clicchiamo su aggiugi al carrello il prodotto viene salvato nel context, e ne aumenta la quantità.
+Nella pagina del carrello inoltre, l'utente può aumnetare le quantità dello stesso prodotto, diminuire e eliminarlo. 
+E' possibile anche fare il checkout, ma è ancora in fase di sviluppo.
+Svuotamento invece cancella i dati del carrello.
+
+si fa anche uso di usereducer che gestisce tutta la logica degli acquisti in un'unica funzione, cosa che con lo useState non si può fare (si poteva optare per Redux, ma ho scelto di migliorare l'utilizzo degli hooks).
 
 Deploy frontend	Vercel
 
