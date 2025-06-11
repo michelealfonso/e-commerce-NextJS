@@ -10,8 +10,8 @@ import { signIn } from "next-auth/react";
 const fullSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid email'),
   password: z.string().min(1, 'Password is required').min(8, 'Password must have at least 8 characters'),
-  name: z.string().min(2, { message: 'Il nome è obbligatorio' }).optional(),
-  confirmPassword: z.string().min(6, { message: 'Minimo 6 caratteri' }).optional(),
+  name: z.string().min(2, { message: 'Name is required' }).optional(),
+  confirmPassword: z.string().min(6, { message: 'Password must have at least 8 characters' }).optional(),
 }).refine((data) => {
   if (data.name && data.confirmPassword) {
     return data.password === data.confirmPassword;
