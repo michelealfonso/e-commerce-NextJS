@@ -22,9 +22,10 @@ export default async function Navbar() {
                     </Link>
                     <Link
                         href="/cart"
-                        className="w-auto flex gap-2 py-1.5 px-4 border  bg-gray-100 hover:bg-gray-200 border-gray-300 rounded-md text-sm font-medium text-gray-800 shadow-sm">
-                        <Image src="/icons/cart.svg" alt="" width={20} height={20} />
-                        <h1> Cart </h1>
+                        className="flex items-center gap-2 px-4 py-1.5 bg-[#FFD814] hover:bg-[#F7CA00] border border-gray-300 rounded-md text-sm font-medium text-gray-900 shadow-sm transition-colors"
+                    >
+                        <Image src="/icons/cart.svg" alt="Carrello" width={20} height={20} />
+                        <span>Carrello</span>
                     </Link>
 
 
@@ -37,7 +38,7 @@ export default async function Navbar() {
                         href="/sign-in">
                         Logout
                     </Link>
-                    <Cart />  
+                    <Cart />
                 </>
             )}
         </div >
