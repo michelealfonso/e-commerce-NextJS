@@ -1,2 +1,0 @@
-// chiamate API per product
-
