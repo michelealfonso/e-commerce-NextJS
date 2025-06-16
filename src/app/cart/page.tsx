@@ -3,14 +3,10 @@
 import { useSession } from 'next-auth/react';
 import { useCart } from '../../app/context/cartContext';
 import Link from 'next/link';
-import Image from 'next/image';
 import { loadStripe } from "@stripe/stripe-js";
 
-// creazione della handleCheckout
-
-  const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
-
 export default function CartPage() {
+
   const { data: session } = useSession();
   const { state, dispatch } = useCart();
 
@@ -20,6 +16,7 @@ export default function CartPage() {
   );
 
 const handleCheckout= async () => {
+  const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
   const response = await fetch('/api/checkout', {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
