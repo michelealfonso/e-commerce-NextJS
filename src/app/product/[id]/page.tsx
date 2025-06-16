@@ -29,7 +29,7 @@ async function getFakeProducts(id: string) {
 
 async function getLocalProducts(id: string) {
   try {
-    const response = await fetch(`/api/product/${id}` );
+    const response = await fetch(`/api/product/${id}`);
     if (!response.ok) {
       return null
     }
