@@ -24,7 +24,7 @@ export default function AddProductModal({ onClose, onProductAdded }: { onClose: 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
-        const response = await fetch('/api/product', {
+        const response = await fetch('/api/products', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({

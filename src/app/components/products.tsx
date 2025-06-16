@@ -19,9 +19,11 @@ async function getFakeProducts() {
 
 async function getLocalProducts() {
   try {
-    const res = await fetch('/api/products');
-    if (!res.ok) throw new Error('Failed to fetch local products');
-    return await res.json();
+    const response = await fetch('/api/products');
+    if (!response.ok) {
+      return null
+    }
+    return await response.json();
   } catch {
     return [];
   }
@@ -83,7 +85,7 @@ export default function Products() {
         )}
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-          {products.map((product: any) => (
+          {products.map((product) => (
             <div
               key={product.id}
               className="border border-gray-200 rounded bg-white p-3 flex flex-col justify-between shadow hover:shadow-md transition-shadow"

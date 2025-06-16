@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { clientPrisma } from "@/app/lib/prisma";
 
 export async function GET(
-  // request: Request,
+  request: Request,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -22,11 +22,16 @@ export async function GET(
     return NextResponse.json({
       ...product,
       createdAt: product.createdAt.toISOString(),
+        _source: "local",
     });
   } catch (error) {
     console.error("Errore nella lettura del prodotto:", error);
     return NextResponse.json(
-      { message: "Errore interno del server" },
+      { 
+        message: "Errore interno del server",
+        error: error instanceof Error ? error.message : String(error),
+      },
+      
       { status: 500 }
     );
   }
