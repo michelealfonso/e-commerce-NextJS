@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "../context/cartContext";
+import { useFavorites } from "../context/favoritesContext";
 import { useEffect, useState } from "react";
 import AddProductModal from "./addProductModal";
 
@@ -32,6 +33,10 @@ async function getLocalProducts() {
 export default function Products() {
   const [products, setProducts] = useState<any[]>([]);
   const { dispatch } = useCart();
+
+  const { dispatchFavorites } = useFavorites();
+
+  // const {favorites dispatch} = useSomething()
 
   const [showModal, setShowModal] = useState(false)
 
@@ -129,6 +134,23 @@ export default function Products() {
               >
                 Aggiungi al carrello
               </button>
+
+              <button
+                onClick={() =>
+                  dispatchFavorites({
+                    type: "ADD_ITEM",
+                    payload: {
+                      id: product.id,
+                      title: product.name,
+                      price: product.price,
+                      image: product.imageUrl,
+                    }
+                  })
+                }
+                className="mt-3 w-full bg-[#FFD814] hover:bg-[#F7CA00] text-xs font-medium text-gray-900 border border-gray-300 py-1.5 rounded-md shadow-sm transition-colors"
+              >
+                Aggiungi ai preferiti
+              </button>
             </div>
           ))}
         </div>
@@ -136,3 +158,4 @@ export default function Products() {
     </div>
   );
 }
+

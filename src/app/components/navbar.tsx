@@ -5,6 +5,7 @@ import { authOptions } from "../lib/auth";
 import Link from "next/link";
 import Image from "next/image";
 import Cart from "./cart";
+import Favorites from "./favorites";
 
 
 export default async function Navbar() {
@@ -25,7 +26,16 @@ export default async function Navbar() {
                         className="flex items-center gap-2 px-4 py-1.5 bg-[#FFD814] hover:bg-[#F7CA00] border border-gray-300 rounded-md text-sm font-medium text-gray-900 shadow-sm transition-colors"
                     >
                         <Image src="/icons/cart.svg" alt="Carrello" width={20} height={20} />
-                        <span>Carrello</span>
+                        <span> Carrello </span>
+                    </Link>
+
+                    {/* aggiungiamo anche qui la lista preferiti  */}
+                    <Link
+                        href="/favorites"
+                        className="flex items-center gap-2 px-4 py-1.5 bg-[#FFD814] hover:bg-[#F7CA00] border border-gray-300 rounded-md text-sm font-medium text-gray-900 shadow-sm transition-colors"
+                    >
+                        <Image src="/icons/heart.svg" alt="Carrello" width={20} height={20} />
+                        <span> Preferiti </span>
                     </Link>
 
 
@@ -38,6 +48,7 @@ export default async function Navbar() {
                         href="/sign-in">
                         Logout
                     </Link>
+                    <Favorites />
                     <Cart />
                 </>
             )}

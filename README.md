@@ -97,3 +97,6 @@ STRIPE_SECRET_KEY: chiave privata Stripe per creare sessioni di pagamento (solo 
 
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: chiave pubblica Stripe usata nel frontend per iniziare il checkout.
 
+NOTA:
+
+in varie parti dell'app viene utilizzato il tag img invece del componente Image di NextJS questo perché essendo che l'app gestisce immagini prese dinamicamente con URL, il tag img consente di gestire meglio contesti dinamici, cosa che il componente Image di NextJS non può fare perché NextJS lo impedisce per motivi di sicurezza.
