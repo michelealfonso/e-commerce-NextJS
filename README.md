@@ -100,3 +100,33 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: chiave pubblica Stripe usata nel frontend pe
 NOTA:
 
 in varie parti dell'app viene utilizzato il tag img invece del componente Image di NextJS questo perché essendo che l'app gestisce immagini prese dinamicamente con URL, il tag img consente di gestire meglio contesti dinamici, cosa che il componente Image di NextJS non può fare perché NextJS lo impedisce per motivi di sicurezza.
+
+EVENTUALE PASSAGGIO A REDUX TOOLKIT
+
+Inoltre in futuro ipotizzando che l'app possa crescere è possibile passare a Redux Toolkit.
+
+"Per la gestione dello stato del carrello ho scelto di utilizzare React Context unito a useReducer, una soluzione semplice e leggera, ideale per progetti piccoli o medi.
+
+La struttura include azioni come ADD_ITEM, REMOVE_ITEM, CLEAR_CART, HYDRATE_CART, e UPDATE_USER, con sincronizzazione automatica su localStorage.
+
+Tuttavia, per una maggiore scalabilità o nel caso in cui l’app cresca, potrei facilmente migrare la logica a Redux Toolkit, che porterebbe vantaggi come:
+
+DevTools integrati per debugging avanzato
+
+Selettori performanti per evitare rerender inutili
+
+Una migliore separazione tra logica di stato e UI
+
+Potenziale integrazione con redux-persist per la persistenza automatica dello stato
+
+I passaggi per effettuare questa migrazione sarebbero:
+
+Creare un cartSlice con createSlice di Redux Toolkit
+
+Sostituire CartContext con uno store globale (Provider con Redux)
+
+Utilizzare hook dedicati (useAppDispatch, useAppSelector) nei componenti
+
+Implementare la sincronizzazione con localStorage o redux-persist
+
+Per capire bene la differenza tra la gestione di Redux Toolkit e Reducer + Context ho strutturato sia favorites e cart sia con Reducer e Context, ma con la differenza che la sezione di favorites è stata successivamente passata a Redux Toolkit, mentre cart è rimasta nel formato Reducer + Context.

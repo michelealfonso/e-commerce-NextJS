@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useCart } from "../context/cartContext";
 import { useFavorites } from "../context/favoritesContext";
 import { useEffect, useState } from "react";
 import AddProductModal from "./addProductModal";
+
+import { useAppDispatch } from "../redux/hooks";
+import { addItem } from "../redux/favoritesSlice";
 
 async function getFakeProducts() {
   try {
@@ -32,11 +34,8 @@ async function getLocalProducts() {
 
 export default function Products() {
   const [products, setProducts] = useState<any[]>([]);
-  const { dispatch } = useCart();
-
-  const { dispatchFavorites } = useFavorites();
-
-  // const {favorites dispatch} = useSomething()
+  const { dispatch: cartDispatch } = useCart();
+  const dispatch = useAppDispatch()
 
   const [showModal, setShowModal] = useState(false)
 
@@ -120,7 +119,7 @@ export default function Products() {
 
               <button
                 onClick={() =>
-                  dispatch({
+                  cartDispatch({
                     type: 'ADD_ITEM',
                     payload: {
                       id: product.id,
@@ -136,17 +135,26 @@ export default function Products() {
               </button>
 
               <button
-                onClick={() =>
-                  dispatchFavorites({
-                    type: "ADD_ITEM",
-                    payload: {
-                      id: product.id,
-                      title: product.name,
-                      price: product.price,
-                      image: product.imageUrl,
-                    }
-                  })
-                }
+                // onClick={() =>
+                //   dispatch({
+                //     type: "ADD_ITEM",
+                //     payload: {
+                //       id: product.id,
+                //       title: product.name,
+                //       price: product.price,
+                //       image: product.imageUrl,
+                //     }
+                //   })
+                // }
+                onClick={() => {
+                   console.log('dispatch addItem', product);
+                  dispatch(addItem({
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    image: product.imageUrl,
+                  }))
+                }}
                 className="mt-3 w-full bg-[#FFD814] hover:bg-[#F7CA00] text-xs font-medium text-gray-900 border border-gray-300 py-1.5 rounded-md shadow-sm transition-colors"
               >
                 Aggiungi ai preferiti

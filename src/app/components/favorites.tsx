@@ -2,10 +2,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useFavorites } from "../context/favoritesContext";
+import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { RootState } from "../redux/store"
 
 export default function Favorites() {
 
-    const { state } = useFavorites()
+    // const { state } = useFavorites()
+
+    const { totalItems }  = useAppSelector((state: RootState) => state.favorites);
+
 
     return (
         <div>
@@ -18,9 +23,9 @@ export default function Favorites() {
             </Link>
 
             {
-                state.totalItems > 0 && (
+                totalItems > 0 && (
                     <span className="absolute top-[15px] right-[150px] bg-red-600 text-white text-[10px] font-semibold rounded-full h-5 w-5 flex items-center justify-center shadow-md">
-                        {state.totalItems}
+                        {totalItems}
                     </span>
                 )
             }
